@@ -1,17 +1,13 @@
+# Development deployment workflow
 name: Development
 
 on:
-    workflow_run:
-        workflows:
-            -Run all tests
-        types:
-            - completed
+    push:
         branches:
             - development
 
 jobs:
     deploy:
-        if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'development' }}
         runs-on: ubuntu-latest
         environment:
             name: development
@@ -36,15 +32,15 @@ jobs:
 
             - name: Build docker image
               run: |
-                docker build -t user_service .
+                docker build -t user-service .
 
             - name: Tag docker image
               run: |
-                docker tag user_service:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/user_service:latest
+                docker tag user-service:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/user-service:latest
 
             - name: Push docker image to ECR
               run: |
-                docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/user_service:latest
+                docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/user-service:latest
 
             - name: Deploy to ECS
               run: |
