@@ -1,17 +1,13 @@
+# Production Deployment Workflow
 name: Production
 
 on:
-    workflow_run:
-        workflows:
-            -Run all tests
-        types:
-            - completed
+    push:
         branches:
             - main
 
 jobs:
     deploy:
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         runs-on: ubuntu-latest
         environment:
             name: production

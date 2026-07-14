@@ -1,17 +1,13 @@
+# Development deployment workflow
 name: Development
 
 on:
-    workflow_run:
-        workflows:
-            -Run all tests
-        types:
-            - completed
+    push:
         branches:
             - development
 
 jobs:
     deploy:
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         runs-on: ubuntu-latest
         environment:
             name: development

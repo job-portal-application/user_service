@@ -1,9 +1,11 @@
+# Tests workflow
 name: Run all tests
 
 on:
   push:
     branches:
-      - "**"
+      - development
+      - main
 
   pull_request:
     branches:
