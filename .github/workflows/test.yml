@@ -3,25 +3,29 @@ name: Run all tests
 on:
   push:
     branches:
-      - main
+      - "**"
 
   pull_request:
     branches:
+      - development
       - main
 
 jobs:
-  onarqube:
+  sonarqube:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Build Docker Image
-        run: docker build -t user-service .
+        run: docker build -t user_service .
 
       - name: Run Jest Tests inside Docker
-        run: docker run --rm -v $PWD/coverage:/app/coverage user-service npm run coverage
+        run: docker run --rm \
+              -v $PWD/coverage:/app/coverage \
+              user_service npm run coverage
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v4
