@@ -25,7 +25,7 @@ jobs:
         run: docker build -t user-service .
 
       - name: Run Jest Tests inside Docker
-        run: docker run --rm -v $PWD/coverage:/app/coverage user_service npm run coverage
+        run: docker run --rm -v $PWD/coverage:/app/coverage user-service npm run coverage
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v4
