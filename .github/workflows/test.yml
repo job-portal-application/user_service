@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 0
 
       - name: Build Docker Image
-        run: docker build -t user_service .
+        run: docker build -t user-service .
 
       - name: Run Jest Tests inside Docker
         run: docker run --rm -v $PWD/coverage:/app/coverage user_service npm run coverage
