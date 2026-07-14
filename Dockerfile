@@ -5,6 +5,11 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN npm ci
+
 COPY . .
 
-CMD ["npm", "run", "coverage"]
+RUN npm run build
+
+EXPOSE 3002
+
+CMD ["npm", "start"]
