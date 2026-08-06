@@ -32,15 +32,15 @@ jobs:
 
             - name: Build docker image
               run: |
-                docker build -t user-service .
+                docker build -t user-service-dev .
 
             - name: Tag docker image
               run: |
-                docker tag user-service:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/user-service:latest
+                docker tag user-service-dev:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/user-service-dev:latest
 
             - name: Push docker image to ECR
               run: |
-                docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/user-service:latest
+                docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/user-service-dev:latest
 
             - name: Deploy to ECS
               run: |

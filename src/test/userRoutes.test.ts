@@ -110,7 +110,7 @@ describe('user routes', () => {
         await import('../../src/routes/userRoutes.js');
 
         expect(mockPut as any).toHaveBeenCalledWith(
-            '/update-profile-pic/:userId',
+            '/update-profile-pic/',
             mockIsAuth,
             mockUploadFile,
             mockUpdateProfilePic
@@ -273,7 +273,7 @@ describe('user routes', () => {
 
         expect(mockPut as any).toHaveBeenNthCalledWith(
             2,
-            '/update-profile-pic/:userId',
+            '/update-profile-pic/',
             mockIsAuth,
             mockUploadFile,
             mockUpdateProfilePic
