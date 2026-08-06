@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/my-profile', isAuth, myProfile);
 router.get('/profile/:userId', isAuth, getUserProfile);
 router.put('/update-profile/:userId', isAuth, updateUserProfile);
-router.put('/update-profile-pic/:userId', isAuth, uploadFile, updateProfilePic);
+router.put('/update-profile-pic/', isAuth, uploadFile, updateProfilePic);
 router.put('/update-resume/:userId', isAuth, uploadFile, updateResume);
 router.post('/skills/add', isAuth, addSkills);
 router.delete('/skills/delete', isAuth, deleteSkills);
