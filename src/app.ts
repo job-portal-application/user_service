@@ -9,6 +9,15 @@ const app = express();
 
 const normalizeOrigin = (origin: string) => origin.trim().replace(/\/+$/, "");
 
+// Health check endpoint added to verify the service is running
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: "UP",
+    service: "User Service",
+    timestamp: new Date().toISOString()
+  });
+});
+
 const buildCorsOptions = () => {
     const allowedOrigins = (process.env.FRONTEND_URL || "")
         .split(",")
